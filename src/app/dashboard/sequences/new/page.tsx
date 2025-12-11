@@ -240,13 +240,10 @@ export default function NewSequencePage() {
                     />
                     <p className="text-xs text-gray-500 mt-1">
                       Variables disponibles: {{"{{client_name}}"}}, {{"{{invoice_number}}"}},
-                      {{"{{amount}}"}}, {{"{{due_date}}"}}
-                    </p>
+                      {'{{amount}}'}, {'{{due_date}}'}                    </p>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                    Variables disponibles: {'{{client_name}}'}, {'{{invoice_number}}'}, {'{{amount}}'}, {'{{due_date}}'}                                  {'{{amount}}'}, {'{{due_date}}'}
+          
         </div>
 
         {/* Actions */}
