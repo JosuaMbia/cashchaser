@@ -12,7 +12,6 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-  ],
       CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -48,6 +47,7 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
+      ],
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error',
