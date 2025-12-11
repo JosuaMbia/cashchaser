@@ -79,7 +79,6 @@ export default function NewSequencePage() {
     } finally {
       setLoading(false);
     }
-82
 
   return (
     <div className="p-8">
