@@ -150,7 +150,7 @@ export default async function SequencesPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sequences.map((sequence) => (
+            {sequences.map((sequence: any) => (
               <div
                 key={sequence.id}
                 className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6"
