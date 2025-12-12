@@ -79,12 +79,11 @@ export default function NewSequencePage() {
     } finally {
       setLoading(false);
     }
-      };
-      
+  };
 
   return (
     <div className="p-8">
-      <div className="mb-6">
+      <div className="mb-8">
         <Link
           href="/dashboard/sequences"
           className="text-sm text-blue-600 hover:underline"
@@ -240,8 +239,13 @@ export default function NewSequencePage() {
                       required
                     />
                     <p className="text-xs text-gray-500 mt-1">
-                      Variables disponibles: {{"{{client_name}}"}}, {{"{{invoice_number}}"}},
-          
+                      Variables disponibles: {{'{{client_name}}'}}, {{'{{invoice_number}}'}}, {{'{{amount}}'}}, {{'{{due_date}}'}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Actions */}
