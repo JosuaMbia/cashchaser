@@ -29,9 +29,9 @@ export default async function DashboardPage() {
     },
   });
 
-  const totalInvoices = stats.reduce((acc, stat) => acc + stat._count, 0);
+  const totalInvoices = stats.reduce((acc: any, stat: any) => acc + stat._count, 0);
   const totalAmount = stats.reduce(
-    (acc, stat) => acc + (stat._sum.amount || 0),
+    (acc: any, stat: any) => acc + (stat._sum.amount || 0),
     0
   );
   const unpaidInvoices = stats.find((s) => s.status === 'UNPAID')?._count || 0;
