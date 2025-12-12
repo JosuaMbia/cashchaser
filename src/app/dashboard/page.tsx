@@ -34,8 +34,8 @@ export default async function DashboardPage() {
     (acc: any, stat: any) => acc + (stat._sum.amount || 0),
     0
   );
-  const unpaidInvoices = stats.find((s) => s.status === 'UNPAID')?._count || 0;
-  const unpaidAmount = stats.find((s) => s.status === 'UNPAID')?._sum.amount || 0;
+  const unpaidInvoices = stats.find((s: any) => s.status === 'UNPAID')?._count || 0;
+  const unpaidAmount = stats.find((s: any) => s.status === 'UNPAID')?._sum.amount || 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
