@@ -7,9 +7,9 @@ import Link from 'next/link';
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    redirect('/auth/signin');
-  }
+  // if (!session) {
+    // redirect('/auth/signin');
+  // }
 
   // Récupérer les statistiques
   const stats = await prisma.invoice.groupBy({
