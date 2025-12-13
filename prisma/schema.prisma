@@ -15,7 +15,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-companies       Compan[]
+companies       Company[]
 clients        Client[]
 invoices       Invoice[]
 sequences      Sequence[]
