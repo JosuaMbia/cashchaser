@@ -17,6 +17,9 @@ model User {
   sessions      Session[]
   company       Company?
   invoices      Invoice[]
+  clients   Client[]
+  clientInvoices Invoice[]
+  sequences Sequence[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
