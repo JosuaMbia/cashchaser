@@ -15,10 +15,10 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-    // company       Company?
-    // clients        Client[]
-    // invoices       Invoice[]
-    // sequences      Sequence[]
+companies       Compan[]
+clients        Client[]
+invoices       Invoice[]
+sequences      Sequence[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -55,3 +55,85 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+
+
+// Business models
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  address   String?
+  siret     String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clients   Client[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Client {
+  id          String    @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  address     String?
+  companyId   String
+  company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoices    Invoice[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Invoice {
+  id          String    @id @default(cuid())
+  number      String
+  amount      Float
+  dueDate     DateTime
+  status      String    @default("pending")
+  clientId    String
+  client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reminders   Reminder[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Reminder {
+  id          String   @id @default(cuid())
+  type        String
+  sentAt      DateTime @default(now())
+  status      String   @default("sent")
+  invoiceId   String
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  sequenceId  String?
+  sequence    Sequence? @relation(fields: [sequenceId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Sequence {
+  id          String            @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reminders   Reminder[]
+  steps       ReminderSequence[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+model ReminderSequence {
+  id         String   @id @default(cuid())
+  dayOffset  Int
+  type       String
+  template   String
+  sequenceId String
+  sequence   Sequence @relation(fields: [sequenceId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
