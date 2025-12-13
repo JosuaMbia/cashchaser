@@ -15,10 +15,10 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  company       Company?
-  clients        Client[]
-  invoices       Invoice[]
-  sequences      Sequence[]
+    // company       Company?
+    // clients        Client[]
+    // invoices       Invoice[]
+    // sequences      Sequence[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -54,64 +54,4 @@ model VerificationToken {
   expires    DateTime
   @@unique([identifier, token])
 }
-
-model Company {
-  id              String    @id @default(cuid())
-  name            String
-  siret           String?   @unique
-  address         String?
-  postalCode      String?
-  city            String?
-  country         String?
-  userId          String    @unique
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  stripeCustomerId String? @unique
-  subscriptionStatus String? @default("inactive")
-  planType        String?   @default("free")
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-}
-
-model Invoice {
-  id              String    @id @default(cuid())
-  invoiceNumber   String
-  clientName      String
-  clientEmail     String?
-  clientPhone     String?
-  amount          Float
-  currency        String    @default("EUR")
-  issueDate       DateTime
-  dueDate         DateTime
-  status          String    @default("unpaid")
-  pdfUrl          String?
-  userId          String
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reminders       Reminder[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-}
-
-model Reminder {
-  id          String    @id @default(cuid())
-  invoiceId   String
-  invoice     Invoice   @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
-  sentAt      DateTime  @default(now())
-  channel     String
-  status      String    @default("sent")
-  content     String?
-  createdAt   DateTime  @default(now())
-}
-
-model ReminderSequence {
-  id              String    @id @default(cuid())
-  name            String
-  delayDays       Int
-  channel         String
-  emailTemplate   String?
-  smsTemplate     String?
-  isActive        Boolean   @default(true)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-}
-
 
