@@ -46,6 +46,14 @@ export async function POST(req: NextRequest) {
       },
     });
 
+
+        // Vérifier que l'utilisateur a été créé
+            if (!user) {
+                    return NextResponse.json(
+                              { error: 'Erreur lors de la création du compte' },
+                                      { status: 500 }
+                                            );
+                                                }
     // Retourner l'utilisateur sans le mot de passe
     const { password: _, ...userWithoutPassword } = user;
 
