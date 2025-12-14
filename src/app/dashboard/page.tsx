@@ -11,9 +11,9 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
     // Session mock temporaire pour désactiver l'auth
 
-/ if (!session) {
+  if (!session) {
  direceet('/auth/signin');
-  // }
+  }
 
   // Récupérer les statistiques
   const stats = await prisma.invoice.groupBy({
