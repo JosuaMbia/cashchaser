@@ -5,7 +5,15 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
+    // Session mock temporaire pour désactiver l'auth
+  const session = {
+    user: {
+      id: 'mock-user-id',
+      email: 'test@cashchaser.app',
+      name: 'Test User'
+    }
+  };
 
   // if (!session) {
     // redirect('/auth/signin');
