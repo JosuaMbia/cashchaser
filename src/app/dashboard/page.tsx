@@ -12,7 +12,7 @@ export default async function DashboardPage() {
     // Session mock temporaire pour désactiver l'auth
 
 / if (!session) {
- direcet('/auth/signin');
+ direceet('/auth/signin');
   // }
 
   // Récupérer les statistiques
