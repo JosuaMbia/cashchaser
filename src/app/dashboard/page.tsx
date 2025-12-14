@@ -11,8 +11,8 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
     // Session mock temporaire pour désactiver l'auth
 
-  // if (!session) {
-    // redirect('/auth/signin');
+/ if (!session) {
+ direcet('/auth/signin');
   // }
 
   // Récupérer les statistiques
