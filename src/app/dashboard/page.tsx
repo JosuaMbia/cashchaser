@@ -4,6 +4,9 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 
+
+// Force dynamic rendering (no prerendering)
+export const dynamic = 'force-dynamic';
 export default async function DashboardPage() {
   // const session = await getServerSession(authOptions);
     // Session mock temporaire pour désactiver l'auth
